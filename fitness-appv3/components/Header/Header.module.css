@@ -1,0 +1,10 @@
+.header {
+    width: 80%;
+    margin: 0 auto;
+    background-color: var(--foreground);
+    color: var(--background);
+    position: absolute;
+    top: 5%;
+    height: 15%;
+    opacity: 80%;
+}
