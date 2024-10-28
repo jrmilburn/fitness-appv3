@@ -1,0 +1,22 @@
+.container {
+    background-color: #e5e7eb;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .muscleName {
+    background-color: #9ca3af;
+    padding: 0.25rem;
+  }
+  
+  .selectButton {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    border: 2px solid #374151;
+    padding: 0.25rem;
+    background-color: transparent;
+  }

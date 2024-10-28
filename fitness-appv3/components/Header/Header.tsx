@@ -11,8 +11,16 @@ export default function Header({ children }) {
     return (
         <>
             <div className={styles["header"]}>
-                {session?.user.name}
-                <Image src={session?.user.image} width={64} height={64} alt='profile'/>
+                <div className={styles['header-item']}>
+
+                </div>
+                <div className={styles['header-item']}>
+                    <h4>{session?.user.name}</h4>
+                    <Image src={session?.user.image || 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png'} width={64} height={64} alt='profile'/>
+                </div>
+            </div>
+            <div className='header-outlet'>
+                {children}
             </div>
         </>
     )
