@@ -1,0 +1,39 @@
+.exerciseContainer {
+    width: 100%;
+    max-width: 32rem;
+    margin: 0 auto;
+    padding: 2rem;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.completed {
+    border-color: #4CAF50; /* Green border */
+}
+
+.notCompleted {
+    border-color: #E5E7EB; /* Gray border */
+}
+
+.muscleName {
+    opacity: 0.5;
+    padding: 0.25rem;
+}
+
+.exerciseTitle {
+    font-weight: bold;
+    font-size: 1.25rem; /* Equivalent to text-xl */
+    padding: 0.25rem;
+}
+
+.setHeader {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 2rem;
+}
+
+.completedMessage {
+    color: #4CAF50;
+    font-weight: bold;
+}

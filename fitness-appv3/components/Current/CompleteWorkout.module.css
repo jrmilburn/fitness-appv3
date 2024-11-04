@@ -1,0 +1,17 @@
+.completeButton {
+    width: 100%;
+    max-width: 32rem;
+    font-size: 1.125rem; /* Equivalent to text-lg */
+    font-weight: bold;
+    color: var(--text-background); /* Use CSS variables or replace with actual color */
+    background-color: var(--bg-foreground); /* Use CSS variables or replace with actual color */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    position: fixed;
+    bottom: 2.5rem;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.completeButton:hover {
+    opacity: 0.75;
+}

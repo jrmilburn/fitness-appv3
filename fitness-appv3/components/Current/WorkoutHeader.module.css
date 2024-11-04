@@ -1,0 +1,40 @@
+.container {
+    width: 100%;
+    max-width: 32rem;
+    margin: 0 auto;
+    background-color: #E5E7EB; /* Light gray background */
+    padding: 1rem;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.subtitle {
+    font-size: 0.875rem; /* Equivalent to font-sm */
+    opacity: 0.5;
+}
+
+.title {
+    font-size: 1.25rem; /* Equivalent to text-xl */
+    font-weight: bold;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.calendarButton {
+    width: 2rem;
+    height: 2rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.calendarButton:hover {
+    transform: scale(1.05);
+}

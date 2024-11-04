@@ -12,7 +12,7 @@ export default function CreateProgram() {
         name: "",
         length: 0,
         days: 0,
-        weeks: [] // Initialize weeks as an empty array
+        weeks: []
       });
 
     const onNext = () => {

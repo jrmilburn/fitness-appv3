@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import styles from './Navbar.module.css'
-import { signOut, signIn, useSession } from 'next-auth/react'
-import { useState, useEffect } from 'react'
+import styles from './Navbar.module.css';
+import { signOut, signIn, useSession } from 'next-auth/react';
+import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 
 export default function Navbar() {
-
     const { data: session } = useSession();
     const [isAuth, setIsAuth] = useState(false);
     const [signInForm, setSignInForm] = useState(false);
@@ -15,7 +15,7 @@ export default function Navbar() {
         isAuth: false,
         name: null,
         email: null,
-        image: defaultProfileImage
+        image: defaultProfileImage,
     });
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export default function Navbar() {
                 isAuth: true,
                 name: session.user.name,
                 email: session.user.email,
-                image: session.user.image || defaultProfileImage
+                image: session.user.image || defaultProfileImage,
             });
         } else {
             setIsAuth(false);
@@ -33,31 +33,46 @@ export default function Navbar() {
                 isAuth: false,
                 name: null,
                 email: null,
-                image: defaultProfileImage
+                image: defaultProfileImage,
             });
         }
     }, [session]);
 
     const handleSignIn = () => {
-
         setSignInForm(true);
+    };
 
-    }
+    const formRef = useRef(null);
+
+    const handleClickOutside = (event) => {
+        // Check if the clicked element is outside the form
+        if (formRef.current && !formRef.current.contains(event.target)) {
+            setSignInForm(false); // Close the form
+        }
+    };
+
+    useEffect(() => {
+        if (signInForm) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [signInForm]);
 
     return (
         <>
             <nav className={styles['nav']}>
                 <ul>
                     <p>Training</p>
-                    <li>Current Workout</li>
-                    <li>Current Program</li>
-                    <li>New Program</li>
+                    <li><Link href={`/current`} className={styles['nav-link']}>Current Workout</Link></li>
+                    <li><Link href={`/create`} className={styles['nav-link']}>New Program</Link></li>
                 </ul>
                 <ul>
                     <p>User</p>
-                    <li>Profile</li>
-                    <li>Search</li>
-                    <li>Settings</li>
+                    <li><Link href={`/profile`} className={styles['nav-link']}>Profile</Link></li>
+                    <li><Link href={`/search`} className={styles['nav-link']}>Search</Link></li>
+                    <li><Link href={`/profile`} className={styles['nav-link']}>Settings</Link></li>
                     {auth.isAuth ? (
                         <button className={styles['sign-in']} onClick={() => signOut()}>Sign Out</button>
                     ) : (
@@ -67,25 +82,23 @@ export default function Navbar() {
             </nav>
 
             {signInForm && (
-                    <div className={styles['sign-in-form']}>
-
-                            <form>
-        
-                                <h3>Sign In</h3>
-                                <input type="text" placeholder='email' />
-                                <input type="text" placeholder='password' />
-                                <button onClick={handleSignIn}>Sign In</button>
-        
-                            </form>
-        
-                            <div className={styles['seperator']}></div>
-        
-                            <button onClick={() => signIn('google')}>Sign in with Google</button>
-        
+                <>
+                    <div className={styles['sign-in-form']} ref={formRef}>
+                        <form>
+                            <h3>Sign In</h3>
+                            <input type="text" placeholder="email" />
+                            <input type="password" placeholder="password" />
+                            <button onClick={handleSignIn}>Sign In</button>
+                        </form>
+                        <div className={styles['seperator']}></div>
+                        <button onClick={() => signIn('google')}>Sign in with Google</button>
                     </div>
+                    <div
+                        className={styles['overlay']}
+                        onClick={() => setSignInForm(false)} // Close form when overlay is clicked
+                    ></div>
+                </>
             )}
-
-
         </>
     );
 }

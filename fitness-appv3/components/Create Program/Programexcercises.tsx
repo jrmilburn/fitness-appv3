@@ -3,16 +3,18 @@
 import Workout from './Workout';
 import { useState } from 'react';
 import styles from './Programexcercises.module.css';
+import Link from 'next/link'
 
 export default function ProgramExcercises({ program, setProgram }) {
     const handleCreate = async () => {
-        /*const response = await fetch('http://localhost:3000/api/program', {
+        const response = await fetch('http://localhost:3000/api/program', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(program),
-        });*/
+        });
+
     };
 
     return (
@@ -36,7 +38,9 @@ export default function ProgramExcercises({ program, setProgram }) {
                     onClick={handleCreate}
                     className={styles['createButton']}
                 >
-                    Create Meso
+                    <Link href='/current'>
+                        Create Meso
+                    </Link>
                 </button>
             </form>
         </>
